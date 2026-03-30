@@ -42,9 +42,6 @@ Browser Dashboard (localhost:8501)
 | Processing | PySpark 3.x |
 | Storage | AWS S3 (parquet) |
 | Dashboard | Streamlit |
-| Infrastructure (Week 2) | Docker, Kubernetes, Ansible |
-| CI/CD (Week 3) | Jenkins, GitHub Actions |
-| Monitoring (Week 4) | Prometheus, Grafana |
 
 ## How to Run
 
