@@ -1,0 +1,6 @@
+# File: crypto-pipeline/.gitignore
+.env
+venv/
+__pycache__/
+*.pyc
+data/

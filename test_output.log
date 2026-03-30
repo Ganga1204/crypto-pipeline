@@ -1,0 +1,22 @@
+:: loading settings :: url = jar:file:/C:/Users/umaga/AppData/Local/Programs/Python/Python314/Lib/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Starting Spark session...
+Spark session started!
+Latest bronze file: bronze/year=2026/month=03/day=30/coins_025549.parquet
+Reading bronze layer...
+Bronze row count: 100
+Sample data:
++-----------+------+--------+-------------+-------------+---------------+---------------------------+--------------------+--------------------+--------------------+--------------------+
+|         id|symbol|    name|current_price|   market_cap|   total_volume|price_change_percentage_24h|  circulating_supply|        last_updated|               image| ingestion_timestamp|
++-----------+------+--------+-------------+-------------+---------------+---------------------------+--------------------+--------------------+--------------------+--------------------+
+|    bitcoin|   btc| Bitcoin|      67096.0|1342837377877|2.7645133857E10|                    0.54022|         2.0008943E7|2026-03-30T02:55:...|https://coin-imag...|2026-03-30T02:55:...|
+|   ethereum|   eth|Ethereum|      2031.33| 245227521365|1.1809599848E10|                    1.19707| 1.206914436586336E8|2026-03-30T02:55:...|https://coin-imag...|2026-03-30T02:55:...|
+|     tether|  usdt|  Tether|     0.999179| 184062727906|4.2518887829E10|                   -0.00311|1.842165542500974E11|2026-03-30T02:54:...|https://coin-imag...|2026-03-30T02:55:...|
+|binancecoin|   bnb|     BNB|       616.82|  84200829263|   7.73415454E8|                    0.62359|      1.3635721716E8|2026-03-30T02:55:...|https://coin-imag...|2026-03-30T02:55:...|
+|     ripple|   xrp|     XRP|         1.35|  82742430683|  1.578642455E9|                    0.92052|     6.1344583754E10|2026-03-30T02:54:...|https://coin-imag...|2026-03-30T02:55:...|
++-----------+------+--------+-------------+-------------+---------------+---------------------------+--------------------+--------------------+--------------------+--------------------+
+only showing top 5 rows
+
+Silver row count after cleaning: 100
+SUCCESS: The process with PID 11404 (child process of PID 4256) has been terminated.
+SUCCESS: The process with PID 4256 (child process of PID 27928) has been terminated.
+SUCCESS: The process with PID 27928 (child process of PID 6180) has been terminated.
