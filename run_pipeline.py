@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timezone
 
 def run_step(script_path, step_name):
-    print(f'\n{'='*50}')
+    print(f"\n{'='*50}")
     print(f'RUNNING: {step_name}')
     print(f'Time: {datetime.now(timezone.utc).isoformat()}')
     print('='*50)

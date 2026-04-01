@@ -1,0 +1,26 @@
+# deploy.yml
+---
+- name: Deploy crypto pipeline to Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Pull latest Docker image from DockerHub
+      command: docker pull dg1204/crypto-pipeline:v1.0
+
+    - name: Apply Kubernetes deployment manifest
+      command: kubectl apply -f k8s/deployment.yaml
+
+    - name: Apply Kubernetes service manifest
+      command: kubectl apply -f k8s/service.yaml
+
+    - name: Wait for deployment to be ready
+      command: kubectl rollout status deployment/crypto-pipeline
+
+    - name: Show running pods
+      command: kubectl get pods
+      register: pods_output
+
+    - name: Print pod status
+      debug:
+        msg: "{{ pods_output.stdout }}"
