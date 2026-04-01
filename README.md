@@ -56,3 +56,60 @@ Browser Dashboard (localhost:8501)
 <img width="1884" height="1050" alt="image" src="https://github.com/user-attachments/assets/7c4cf335-c646-4bc9-8d2b-590061ec442b" />
 <img width="1867" height="1045" alt="image" src="https://github.com/user-attachments/assets/2b109a3a-3cb5-42d6-89e2-4927d354c934" />
 
+
+# Crypto Price Data Pipeline
+
+A production-grade, end-to-end data pipeline with automated CI/CD,
+Kubernetes deployment, and real-time monitoring.
+
+## Architecture
+
+```
+CoinGecko API
+     |
+     v ingest.py (Python + boto3)
+S3 Bronze Layer (raw parquet)
+     |
+     v transform.py (PySpark - medallion architecture)
+S3 Silver Layer (cleaned parquet)
+     |
+S3 Gold Layer  (aggregated parquet)
+     |
+     v app.py (Streamlit dashboard)
+Browser Dashboard (localhost:8501)
+```
+
+## Tech Stack
+
+| Component | Technology | Why |
+|-----------|------------|-----|
+| Ingestion | Python, requests | Simple, reliable API client |
+| Processing | PySpark | Industry standard for scalable ETL |
+| Storage | AWS S3, Parquet | Columnar format, cheap, durable |
+| Dashboard | Streamlit | Fast Python-native dashboards |
+| Container | Docker | Reproducible environments |
+| Orchestration | Kubernetes (minikube) | Auto-healing, scalable |
+| Deployment | Ansible | Idempotent, auditable automation |
+| CI | Jenkins + SonarQube | Code quality gate before every deploy |
+| CD | GitHub Actions | Auto-deploy on merge to main |
+| Monitoring | Prometheus + Grafana | Industry-standard observability |
+
+## How to Run Locally
+
+1. Clone the repo and create .env with your AWS credentials
+2. pip install -r requirements.txt
+3. python src/run_pipeline.py
+4. streamlit run src/app.py
+
+## How to Deploy
+
+1. minikube start --driver=docker
+2. ansible-playbook deploy.yml
+3. minikube service crypto-pipeline-service
+
+## CI/CD Flow
+
+Push to main -> Jenkins builds & tests -> SonarQube quality gate
+-> Docker image pushed to DockerHub -> GitHub Actions deploys to K8s
+
+
