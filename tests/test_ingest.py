@@ -43,7 +43,12 @@ def test_fetch_crypto_data_raises_on_api_error():
 
 
 def test_save_to_bronze_keeps_only_expected_columns():
-    with patch("src.ingest.boto3.client") as mock_boto:
+    # BUCKET_NAME is read from the S3_BUCKET_NAME env var at import time.
+    # In CI (and in this sandbox) that env var is genuinely unset, so
+    # BUCKET_NAME is None -- patch it directly instead of asserting on an
+    # env var we never set.
+    with patch("src.ingest.BUCKET_NAME", "test-bucket"), \
+         patch("src.ingest.boto3.client") as mock_boto:
         mock_s3 = MagicMock()
         mock_boto.return_value = mock_s3
 
@@ -52,7 +57,7 @@ def test_save_to_bronze_keeps_only_expected_columns():
         # boto3 client's put_object should be called exactly once
         mock_s3.put_object.assert_called_once()
         call_kwargs = mock_s3.put_object.call_args.kwargs
-        assert call_kwargs["Bucket"] is not None
+        assert call_kwargs["Bucket"] == "test-bucket"
         assert "coins_" in call_kwargs["Key"]
         assert s3_key == call_kwargs["Key"]
 
