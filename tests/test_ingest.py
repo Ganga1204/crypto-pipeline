@@ -63,7 +63,8 @@ def test_save_to_bronze_keeps_only_expected_columns():
 
 
 def test_save_to_bronze_key_follows_date_partition_format():
-    with patch("src.ingest.boto3.client") as mock_boto:
+    with patch("src.ingest.BUCKET_NAME", "test-bucket"), \
+         patch("src.ingest.boto3.client") as mock_boto:
         mock_boto.return_value = MagicMock()
         s3_key = save_to_bronze(SAMPLE_API_RESPONSE)
         assert s3_key.startswith("bronze/year=")
