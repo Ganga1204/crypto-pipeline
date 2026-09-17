@@ -1,5 +1,8 @@
 # Crypto Price Data Pipeline
 
+![Tests](https://github.com/Ganga1204/crypto-pipeline/actions/workflows/test.yml/badge.svg)
+
+
 A production-grade, end-to-end data pipeline that ingests live cryptocurrency
 prices from the CoinGecko API, processes them using PySpark with a medallion
 architecture (Bronze → Silver → Gold), stores all layers in AWS S3, and
